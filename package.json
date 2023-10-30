@@ -1,0 +1,20 @@
+{
+  "name": "sistemareactlp2-backend",
+  "version": "1.0.0",
+  "description": "Projeto de backend do trabalho de lp 2",
+  "main": "index.js",
+  "type":"module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarianoAndrelloRubira/SistemaReactLP2-backend.git"
+  },
+  "author": "Mariano Andrello Rubira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarianoAndrelloRubira/SistemaReactLP2-backend/issues"
+  },
+  "homepage": "https://github.com/MarianoAndrelloRubira/SistemaReactLP2-backend#readme"
+}
