@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Projeto de backend do trabalho de lp 2",
   "main": "index.js",
-  "type":"module",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/MarianoAndrelloRubira/SistemaReactLP2-backend/issues"
   },
-  "homepage": "https://github.com/MarianoAndrelloRubira/SistemaReactLP2-backend#readme"
+  "homepage": "https://github.com/MarianoAndrelloRubira/SistemaReactLP2-backend#readme",
+  "dependencies": {
+    "mysql2": "^3.6.3"
+  }
 }
