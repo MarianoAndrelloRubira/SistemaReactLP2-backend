@@ -8,7 +8,7 @@ export default class categoriaDAO {
             const parametros = [categoria.desCat];
             const conexao = await conectar();
             const retorno = await conexao.execute(sql, parametros);
-            categoria.id = retorno[0].insertId;
+            categoria.codCat = retorno[0].insertId;
             global.poolConexoes.releaseConnection(conexao);
         }
 

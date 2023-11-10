@@ -1,3 +1,5 @@
+ import produtoDAO from "../percistencia/produtoDAO.js";
+ 
  export default class Produto {
     #cod;
     #marca;
@@ -108,18 +110,22 @@
     }
 
     async gravar() {
-
+        const prodDAO = new produtoDAO();
+        await prodDAO.gravar(this);
     }
 
     async excluir() {
-
+        const prodDAO = new produtoDAO();
+        await prodDAO.excluir(this);
     }
 
-    async alterar() {
-
+    async atualizar() {
+        const prodDAO = new produtoDAO();
+        await prodDAO.atualizar(this);
     }
 
-    async consultar() {
-
+    async consultar(termo) {
+        const prodDAO = new produtoDAO();
+        return await prodDAO.gravar(termo);
     }
 }
