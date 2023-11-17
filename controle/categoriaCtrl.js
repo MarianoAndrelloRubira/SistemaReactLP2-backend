@@ -5,7 +5,7 @@ export default class CategoriaCtrl {
         resposta.type("application/json");
         if (requisicao.method === 'POST' && requisicao.is("application/json")) {
             const dados = requisicao.body;
-            const descricao = dados.cat_desCat;
+            const descricao = dados.desCat;
             if (descricao) {
                 const categoria = new Categoria(0, descricao);
                 categoria.gravar().then(() => {
@@ -13,12 +13,12 @@ export default class CategoriaCtrl {
                         "status": true,
                         "codigoGerado": categoria.codCat,
                         "mensagem": "Categoria incluida com sucesso!"
-                    }).catch((erro) => {
-                        resposta.status(500).json({
-                            "status": false,
-                            "mensagem": "Erro ao registrar a categoria: " + erro.message
-                        });
                     })
+                }).catch((erro) => {
+                    resposta.status(500).json({
+                        "status": false,
+                        "mensagem": "Erro ao registrar a categoria: " + erro.message
+                    });
                 })
             }
             else {
@@ -48,12 +48,12 @@ export default class CategoriaCtrl {
                         "status": true,
                         "codigoGerado": categoria.codCat,
                         "mensagem": "Categoria atualizada com sucesso!"
-                    }).catch((erro) => {
-                        resposta.status(500).json({
-                            "status": false,
-                            "mensagem": "Erro ao atualizar a categoria: " + erro.message
-                        });
                     })
+                }).catch((erro) => {
+                    resposta.status(500).json({
+                        "status": false,
+                        "mensagem": "Erro ao atualizar a categoria: " + erro.message
+                    });
                 })
             }
             else {
@@ -82,12 +82,12 @@ export default class CategoriaCtrl {
                         "status": true,
                         "codigoGerado": categoria.codCat,
                         "mensagem": "Categoria excluida com sucesso!"
-                    }).catch((erro) => {
-                        resposta.status(500).json({
-                            "status": false,
-                            "mensagem": "Erro ao excluir a categoria: " + erro.message
-                        });
                     })
+                }).catch((erro) => {
+                    resposta.status(500).json({
+                        "status": false,
+                        "mensagem": "Erro ao atualizar a categoria: " + erro.message
+                    });
                 })
             }
             else {
@@ -107,5 +107,33 @@ export default class CategoriaCtrl {
     }
     consultar(requisicao, resposta) {
         resposta.type("application/json");
+        //express, por meio do controle de rotas, será preparado para esperar um termo de busca
+        let termo = requisicao.params.termo;
+        if(!termo){
+            termo = "";
+        }
+        if(requisicao.method === "GET"){
+            const categoria = new Categoria();
+            categoria.consultar(termo).then((listaCategorias)=>{
+                resposta.status(200).json({
+                    status:true,
+                    listaCategorias
+                });
+            })
+            .catch((erro)=>{
+                resposta.json(
+                    {
+                        status:false,
+                        mensagem:"Não foi possivel obter as categorias: "+erro.message
+                    }
+                );
+            })
+        }
+        else {
+            resposta.status(400).json({
+                "status": false,
+                "mensagem": "Por favor, utilize os métodos Get para consultar uma categoria!"
+            });
+        }
     }
 }

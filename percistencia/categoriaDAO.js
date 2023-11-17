@@ -15,8 +15,8 @@ export default class categoriaDAO {
     }
     async atualizar(categoria) {
         if (categoria instanceof Categoria) {
-            const sql = "UPDATE categoria SET cat_desCat = ?  WHERE cat_codCat = ?;"
-            const parametros = [categoria.codCat, categoria.desCat];
+            const sql = "UPDATE categoria SET cat_desCat = ?  WHERE cat_codCat = ?"
+            const parametros = [categoria.desCat, categoria.codCat];
             const conexao = await conectar();
             const retorno = await conexao.execute(sql, parametros);
             categoria.id = retorno[0].insertId;
@@ -48,11 +48,8 @@ export default class categoriaDAO {
             {
                 parametroConsulta = '';
             }
-            else
-            {
-                sql = "SELECT * FROM categoria WHERE cat_desCat like ?"
-                parametros = ['%'+parametroConsulta+'%']
-            }
+            sql = "SELECT * FROM categoria WHERE cat_desCat like ?"
+            parametros = ['%'+parametroConsulta+'%'];
         }
         const conexao = await conectar();
         const [registros,campos]= await conexao.execute(sql,parametros);

@@ -1,6 +1,6 @@
- import produtoDAO from "../percistencia/produtoDAO.js";
- 
- export default class Produto {
+import produtoDAO from "../percistencia/produtoDAO.js";
+
+export default class Produto {
     #cod;
     #marca;
     #nomeProd;

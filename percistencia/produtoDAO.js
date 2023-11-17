@@ -1,12 +1,12 @@
 import Categoria from "../modelo/categoria.js";
 import Produto from "../modelo/produto.js";
-import Categoria from "../modelo/categoria.js";
 import conectar from "./conexao.js"
 
 export default class produtoDAO {
     async gravar(produto) {
         if (produto instanceof Produto) {
-            const sql = `INSERT INTO produto(prod_marca,prod_nomeProd,prod_precInd,prod_qtd,prod_precLot,prod_precVenda,cat_codCat,prod_data)
+            const sql = `INSERT INTO produto(prod_marca,prod_nomeProd,prod_precInd,prod_qtd,prod_precLot,prod_precVenda,
+                cat_codCat,prod_data)
             VALUES(?,?,?,?,?,?,?,?)`;
             const parametros = [produto.marca, produto.nomeProd, produto.precInd, produto.qtd, produto.precLot, produto.precVenda, produto.cate.codCat,produto.data];
             const conexao = await conectar();

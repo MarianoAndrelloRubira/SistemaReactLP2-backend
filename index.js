@@ -1,17 +1,17 @@
-import Produto from './modelo/produto.js'
-import Categoria from './modelo/categoria.js'
+import express from 'express';
+import rotaCategoria from './rotas/rotaCategoria.js';
+import rotaProduto from './rotas/rotaProduto.js'
+import cors from 'cors';
 
-//const categoria = new Categoria(1,'Calçados Infantis');
+const host="0.0.0.0"
+const porta = 4000;
+const app = express();
 
-//categoria.gravar().then(()=>{
-//    console.log(categoria.id);
-//});
-const cate = new Categoria();
+app.use(cors({origin:"*"}));
+app.use(express.json());
 
-cate.consultar("calça").then((listaCategorias)=>{
-    console.log(listaCategorias);
-})
-
-const produto = new Produto(1,'Nike','XXXX',50,10,500,55,cate,'indeterminada');
-
-console.log(produto.toJSON());
+app.use('/categoria',rotaCategoria);
+app.use('/produto',rotaProduto);
+app.listen(porta,host, ()=>{
+    console.log(`API do sitema em execução: ${host}:${porta}`)
+});
